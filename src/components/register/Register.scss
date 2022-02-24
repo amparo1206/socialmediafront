@@ -1,0 +1,57 @@
+@import '../../colors.scss';
+
+.register-form{
+    max-width: 50%;
+    height: 100vh;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: $black;
+    color: $white;
+
+    .logo{
+        img{
+            width: 150px;
+            height: auto;
+        }
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        input[type="password"],input[type="email"], input[type="text"]{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            max-width: 350px;
+            width: calc(100% - 20px - 20px);
+            background: $extraextralightgray;
+            border: 0;
+            margin-bottom: 20px;
+            border-radius: 42px;
+            height: 42px;
+            padding: 0 20px;
+        }
+        button[type="submit"]{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            max-width: 350px;
+            border: 0;
+            border-radius: 42px;
+            height: 42px;
+            background: $blue;
+            color: $white;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+}
