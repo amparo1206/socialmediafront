@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import {login} from '../../Features/auth/authSlice'
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email:'',
@@ -11,6 +13,8 @@ const Login = () => {
             [e.target.name]:e.target.value,
         }))
     }
+
+   
     const onSubmit = (e) => {
         e.preventDefault()
         console.log('formData',formData)
