@@ -11,17 +11,31 @@ const register = async (userData) => {
     }
 };
 
-const login = async(userData)=>{
-    const res = await axios.post(API_URL + '/users/login',userData)
+const login = async (userData) => {
+    const res = await axios.post(API_URL + '/users/login', userData)
     if (res.data) {
         localStorage.setItem("user", JSON.stringify(res.data));
-      }
+    }
+    return res.data
+};
+
+const logout = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const res = await axios.delete(API_URL + '/user/logout', {
+        headers: {
+            authorization: user?.token,
+        },
+    })
+    if (res.data) {
+        localStorage.removeItem('user')
+    }
     return res.data
 }
 
 const authService = {
-  register,
-  login
+    register,
+    login,
+    logout
 };
 
 export default authService;
