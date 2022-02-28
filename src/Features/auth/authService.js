@@ -4,7 +4,7 @@ const API_URL = "http://localhost:3001";
 
 const register = async (userData) => {
     try {
-        const res = await axios.post(API_URL + "/users", userData);
+        const res = await axios.post(API_URL + "/users/register", userData);
         return res.data;
     } catch (error) {
         console.error(error)

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Register.scss'
 import logo from '../../img/logo.svg'
-/* import { useDispatch } from 'react-redux' */
+import { useDispatch } from 'react-redux'
 import { register } from '../../Features/auth/authSlice'
 
 const Register = () => {
@@ -11,7 +11,7 @@ const Register = () => {
         password: ''
     })
     const { name, email, password } = formData
-    /*  const dispatch = useDispatch() */
+    const dispatch = useDispatch() 
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -21,7 +21,7 @@ const Register = () => {
     }
     const onSubmit = (e) => {
         e.preventDefault()
-        /* dispatch(register(formData)) */
+        dispatch(register(formData))
     }
     return (
         <div className='register-form'>
