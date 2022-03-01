@@ -24,7 +24,7 @@ const Register = () => {
             notification.error({ message: "error", description: message });
         }
         if (isSuccess) {
-            notification.success({ message: "error", description: message?.message })
+            notification.success({ message: "Welcome", description: message?.message })
         }
         dispatch(reset())
     }, [isError, isSuccess, message, dispatch]);

@@ -7,14 +7,21 @@ const getAll = async () => {
     return res.data
 }
 
-/* const post = async () => {
-    const res = await axios.post(API_URL + "/posts")
-    return res
-} */
-
+const create = async (post) => {
+    console.log(post)
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    const res = await axios.post(API_URL + "/posts", post, {
+        headers: {
+            authorization: user?.token
+        }
+    })
+    return res.data
+}
 
 const postService = {
-    getAll
+    getAll,
+    create
 };
 
 export default postService;

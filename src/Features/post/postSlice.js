@@ -13,6 +13,14 @@ export const getAll = createAsyncThunk("post/getAll", async () => {
     }
 });
 
+export const create = createAsyncThunk("post/create", async (post) => {
+    try {
+        return await postService.create(post)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 export const postSlice = createSlice({
     name: "post",
     initialState,

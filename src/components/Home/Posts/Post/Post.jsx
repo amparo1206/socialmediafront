@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../../../../Features/post/postSlice"
+import { create, getAll } from "../../../../Features/post/postSlice"
 import {Link} from 'react-router-dom'
 
 const Post = () => {
-    const  posts = useSelector((state) => state.post);
+    const posts = useSelector((state) => state.post);
+    const [formData, setFormData] = useState({ title: " ", description: " " })
+    const { title, description } = formData
+
+    const onChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getAll());
@@ -17,9 +26,20 @@ const Post = () => {
             <p>{post.title}</p>
           </div>
         );
-      });
+    });
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(create(formData))
+    }
     return (
-    <div>{post}</div>
+        <div className='tuitt-form'>
+        <h2>Tuitea</h2>
+        <form onSubmit={onSubmit}>
+            <input name="title" value={title} onChange={onChange} placeholder='Tuitt' />
+            <button type="submit">Tuitt</button>
+            </form>
+            {post}
+    </div>
   )
 }
 
