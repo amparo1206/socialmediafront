@@ -8,9 +8,7 @@ const getAll = async () => {
 }
 
 const create = async (post) => {
-    console.log(post)
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
     const res = await axios.post(API_URL + "/posts", post, {
         headers: {
             authorization: user?.token
@@ -19,9 +17,15 @@ const create = async (post) => {
     return res.data
 }
 
+const getById = async (_id) => {
+    const res = await axios.get(API_URL + "/posts/" + _id);
+    return res.data
+}
+
 const postService = {
     getAll,
-    create
+    create,
+    getById
 };
 
 export default postService;

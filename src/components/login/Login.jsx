@@ -43,8 +43,8 @@ const Login = () => {
             </div>
             <h2>Login</h2>
             <form onSubmit={onSubmit}>
-                <input type="email" name="email" value={email} onChange={onChange} placeholder='Email' />
-                <input type="password" name="password" value={password} onChange={onChange} placeholder='Password' />
+                <input type="email" name="email" value={email} onChange={onChange} required placeholder='Email' />
+                <input type="password" name="password" value={password} onChange={onChange} required placeholder='Password' />
                 <button type="submit">Login</button>
             </form>
         </div>
