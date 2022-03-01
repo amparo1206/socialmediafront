@@ -3,7 +3,7 @@ import postService from "./postService";
 
 const initialState = {
     posts: [],
-    post:{}
+    post: {}
 };
 
 export const getAll = createAsyncThunk("post/getAll", async () => {
@@ -30,6 +30,15 @@ export const getById = createAsyncThunk("post/getById", async (_id) => {
     }
 })
 
+export const deletePost = createAsyncThunk("posts/deletePost", async (_id) => {
+    try {
+        return await postService.deletePost(_id);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+
 export const postSlice = createSlice({
     name: "post",
     initialState,
@@ -44,7 +53,10 @@ export const postSlice = createSlice({
             })
             .addCase(getById.fulfilled, (state, action) => {
                 state.posts = action.payload;
-        })
+            })
+            .addCase(deletePost.fulfilled, (state, action) => {
+                state.posts = state.posts.filter((post) => post._id !== +action.payload._id);
+            })
     },
 
 });
