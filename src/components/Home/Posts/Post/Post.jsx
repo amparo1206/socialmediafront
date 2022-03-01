@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, getAll, reset } from "../../../../Features/post/postSlice"
+import { create, getAll} from "../../../../Features/post/postSlice"
 import { Link } from 'react-router-dom'
 
 const Post = () => {
-    const { posts, isLoading } = useSelector((state) => state.post);
+    const { posts } = useSelector((state) => state.post);
     const [formData, setFormData] = useState({ title: " ", description: " " })
     const { title, description } = formData
 
@@ -17,12 +17,8 @@ const Post = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAll());
-/*         dispatch(reset()); */
     }, []);
 
-/*     if (isLoading) {
-        return <h1>loading tuitts...</h1>;
-    } */
 
     const post = posts.posts.map((post) => {
         return (
