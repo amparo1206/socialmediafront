@@ -7,7 +7,7 @@ import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
 import PostDetail from './components/Home/Posts/Post/PostDetail/PostDetail';
-import Author from './components/Author/Author'
+
 
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
           <Route path='/register' element={< Register />} />
           <Route path='/profile' element={< Profile />} />
           <Route path='/post/:_id' element={< PostDetail />} />
-          <Route path='/author' element={< Author/>} />
         </Routes>
       </BrowserRouter>
     </div>
