@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, getAll, like } from "../../../../Features/post/postSlice"
+import { create, getAll, like, disLike } from "../../../../Features/post/postSlice"
 import { Link } from 'react-router-dom'
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
@@ -23,7 +23,6 @@ const Post = () => {
 
 
     const post = posts.map((post) => {
-        console.log(user)
         const isLiked = post.likes?.includes(user?.user._id);
         return (
             <div className="post" key={post._id}>
@@ -31,12 +30,11 @@ const Post = () => {
                     <p>{post.title}</p>
 
                 </Link>
-                    <span className="like">Like :{post.likes?.length}</span>
-                    {isLiked ? (
-                        <HeartFilled onClick={isLiked ? () => console.log("dislike") : () => dispatch(like(post._id))} />
-                    ) : (
-                        <HeartOutlined onClick={isLiked ? () => console.log("dislike") : () => dispatch(like(post._id))} />
-                    )}
+                <span className="like">Like :{post.likes?.length}</span>
+                {isLiked
+                    ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                }
             </div>
         );
     });
