@@ -25,9 +25,9 @@ const getById = async (_id) => {
     return res.data
 }
 
-const deletePost = async (id) => {
+const deletePosts = async (_id) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const res = await axios.delete(API_URL + "/posts/" + id, {
+    const res = await axios.delete(API_URL + "/posts/" + _id,{
         headers: {
             authorization: user?.token,
         },
@@ -60,7 +60,7 @@ const postService = {
     getAll,
     create,
     getById,
-    deletePost,
+    deletePosts,
     like,
     disLike
 };

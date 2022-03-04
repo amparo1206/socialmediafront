@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, getAll, like, disLike } from "../../../../Features/post/postSlice"
+import { create, getAll, like, disLike, deletePosts } from "../../../../Features/post/postSlice"
 import { Link } from 'react-router-dom'
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import './Post.scss'
 
 const Post = () => {
     const { posts } = useSelector((state) => state.post);
     const { user } = useSelector((state) => state.auth);
-    const [formData, setFormData] = useState({ title: " ", description: " " })
-    const { title, description } = formData
+    const [formData, setFormData] = useState({ title: " " })
+    const { title } = formData
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -17,10 +18,9 @@ const Post = () => {
         }))
     }
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAll());
+    useEffect(async() => {
+        await dispatch(getAll());
     }, []);
-
 
     const post = posts.map((post) => {
         const isLiked = post.likes?.includes(user?.user._id);
@@ -32,9 +32,11 @@ const Post = () => {
                 </Link>
                 <span className="like">Like :{post.likes?.length}</span>
                 {isLiked
-                    ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
-                    : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    ? <HeartFilled className="heartlike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    : <HeartOutlined className="heartDisLike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                 }
+                                <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
+
             </div>
         );
     });

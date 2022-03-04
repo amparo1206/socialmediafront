@@ -30,9 +30,9 @@ export const getById = createAsyncThunk("post/getById", async (_id) => {
     }
 })
 
-export const deletePost = createAsyncThunk("posts/deletePost", async (_id) => {
+export const deletePosts = createAsyncThunk("posts/deletePost", async (_id) => {
     try {
-        return await postService.deletePost(_id);
+        return await postService.deletePosts(_id);
     } catch (error) {
         console.error(error);
     }
@@ -67,8 +67,17 @@ export const postSlice = createSlice({
             .addCase(getById.fulfilled, (state, action) => {
                 state.post = action.payload;
             })
-            .addCase(deletePost.fulfilled, (state, action) => {
-                state.posts = state.posts.filter((post) => post._id !== +action.payload._id);
+            .addCase(create.fulfilled, (state, action) => {
+                const posts = state.posts.map((post) => {
+                    if (post._id === action.payload._id) {
+                    post = action.payload
+                    }
+                    return post
+                })
+                state.posts = posts
+            })
+            .addCase(deletePosts.fulfilled, (state, action) => {
+                state.posts = state.posts.filter((post) => post._id !== action.payload.post._id.toString());
             })
             .addCase(like.fulfilled, (state, action)=>{
                 const posts = state.posts.map((post) => {

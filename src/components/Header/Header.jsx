@@ -21,7 +21,7 @@ const Header = () => {
                         <Link to='/' onClick={onLogout}>Logout</Link>
                     </span>
                     <span>
-                    <Link to='/profile'>{user.name}</Link>
+                    <Link to='/home'>{user.name}</Link>
                     </span>
                 </>
                 :
