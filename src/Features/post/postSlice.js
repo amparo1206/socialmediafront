@@ -68,13 +68,7 @@ export const postSlice = createSlice({
                 state.post = action.payload;
             })
             .addCase(create.fulfilled, (state, action) => {
-                const posts = state.posts.map((post) => {
-                    if (post._id === action.payload._id) {
-                    post = action.payload
-                    }
-                    return post
-                })
-                state.posts = posts
+                state.posts = [action.payload,...state.posts]
             })
             .addCase(deletePosts.fulfilled, (state, action) => {
                 state.posts = state.posts.filter((post) => post._id !== action.payload.post._id.toString());

@@ -30,7 +30,7 @@ const Header = () => {
                     <span><Link to='/register'> Register </Link></span>
                 </>
             }
-{/*             {user?.rol === 'author' ? <span><Link to="/author">Author</Link></span>:''}; */}
+           {/* {user?.rol === 'author' ? <span><Link to="/author">Author</Link></span>:''}; */}
             </div>
         </nav>
     )

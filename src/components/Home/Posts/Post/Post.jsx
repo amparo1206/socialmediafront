@@ -18,12 +18,12 @@ const Post = () => {
         }))
     }
     const dispatch = useDispatch();
-    useEffect(async() => {
+    useEffect(async () => {
         await dispatch(getAll());
     }, []);
 
     const post = posts.map((post) => {
-        const isLiked = post.likes?.includes(user?.user._id);
+        const isLiked = post.likes?.includes(user?._id);
         return (
             <div className="post" key={post._id}>
                 <Link to={"/post/" + post._id}>
@@ -35,7 +35,7 @@ const Post = () => {
                     ? <HeartFilled className="heartlike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                     : <HeartOutlined className="heartDisLike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                 }
-                                <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
+                <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
 
             </div>
         );
