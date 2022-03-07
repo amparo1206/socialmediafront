@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Post from "./Post/Post"
-import create from "../../../Features/post/postSlice"
+import  { getAll } from "../../../Features/post/postSlice"
+import { useDispatch } from 'react-redux'
 
-const posts = () => {
+const Posts = () => {
+  const dispatch = useDispatch()
+  useEffect(async () => {
+    await dispatch(getAll());
+}, []);
     return (
         <Post />
   )
 }
 
-export default posts;
+export default Posts;

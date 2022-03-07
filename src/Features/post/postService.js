@@ -1,3 +1,4 @@
+import Title from "antd/lib/skeleton/Title";
 import axios from "axios";
 
 const API_URL = "http://localhost:3001";
@@ -22,6 +23,11 @@ const create = async (post) => {
 
 const getById = async (_id) => {
     const res = await axios.get(API_URL + "/posts/id/" + _id);
+    return res.data
+}
+
+const getPostByName = async (title) => {
+    const res = await axios.get(API_URL + "/posts/title/" + title);
     return res.data
 }
 
@@ -60,6 +66,7 @@ const postService = {
     getAll,
     create,
     getById,
+    getPostByName,
     deletePosts,
     like,
     disLike

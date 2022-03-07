@@ -18,9 +18,7 @@ const Post = () => {
         }))
     }
     const dispatch = useDispatch();
-    useEffect(async () => {
-        await dispatch(getAll());
-    }, []);
+   
 
     const post = posts.map((post) => {
         const isLiked = post.likes?.includes(user?._id);
@@ -32,11 +30,10 @@ const Post = () => {
                 </Link>
                 <span className="like">Like :{post.likes?.length}</span>
                 {isLiked
-                    ? <HeartFilled className="heartlike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
-                    : <HeartOutlined className="heartDisLike" onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                 }
                 <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
-
             </div>
         );
     });
