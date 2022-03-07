@@ -61,6 +61,13 @@ export const disLike = createAsyncThunk("/disLike", async (_id) => {
     }
 })
 
+export const addComment = createAsyncThunk("/addComment", async (formData) => {
+    try {
+        return await postService.addComment(formData)
+    } catch (error) {
+        console.error(error)
+    }
+})
 
 export const postSlice = createSlice({
     name: "post",
@@ -72,6 +79,9 @@ export const postSlice = createSlice({
                 state.posts = action.payload;
             })
             .addCase(getById.fulfilled, (state, action) => {
+                state.post = action.payload;
+            })
+            .addCase(addComment.fulfilled, (state, action) => {
                 state.post = action.payload;
             })
             .addCase(getPostByName.fulfilled, (state, action) => {

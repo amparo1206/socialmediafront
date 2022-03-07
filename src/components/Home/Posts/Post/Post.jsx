@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, getAll, like, disLike, deletePosts } from "../../../../Features/post/postSlice"
+import { create, like, disLike, deletePosts } from "../../../../Features/post/postSlice"
 import { Link } from 'react-router-dom'
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import './Post.scss'
