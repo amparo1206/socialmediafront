@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { create, like, disLike, deletePosts } from "../../../../Features/post/postSlice"
+import { create, like, disLike, deletePosts, updatePosts, getAll } from "../../../../Features/post/postSlice"
 import { Link } from 'react-router-dom'
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import './Post.scss'
@@ -18,7 +18,7 @@ const Post = () => {
         }))
     }
     const dispatch = useDispatch();
-   
+
 
     const post = posts.map((post) => {
         const isLiked = post.likes?.includes(user?._id);
@@ -33,14 +33,24 @@ const Post = () => {
                     ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                     : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                 }
-                <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
+                {console.log(post?.userId?._id)}
+                {user.user._id === post?.userId?._id
+                    ?
+                    <>
+                    <button onClick={() => dispatch(deletePosts(post._id))}>Delete</button>
+                    <button><Link to={"/post/editPost/" + post._id}>Update</Link></button>
+                    </>
+                    :
+                    ''
+                }
             </div>
         );
     });
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        dispatch(create(formData))
+        await dispatch(create(formData))
+        await dispatch(getAll(formData))
     }
     return (
         <div className='tuitt-form'>

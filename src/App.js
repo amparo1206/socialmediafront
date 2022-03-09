@@ -9,6 +9,7 @@ import Profile from './components/Profile/Profile';
 import PostDetail from './components/Home/Posts/Post/PostDetail/PostDetail';
 import NotFound from './components/NotFound/NotFound';
 import Search from './components/Search/Search';
+import EditPost from './components/Home/Posts/EditPost/EditPost';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/register' element={< Register />} />
           <Route path='/profile' element={< Profile />} />
           <Route path='/post/:_id' element={< PostDetail />} />
+          <Route path='/post/editPost/:_id' element={< EditPost/>} />
           <Route path='/search/:title' element={<Search/>} />
           <Route path='*' element={<NotFound />} />
         </Routes>

@@ -30,7 +30,10 @@ const Header = () => {
                         <Link to='/' onClick={onLogout}>Logout</Link>
                     </span>
                     <span>
-                        <Link to='/home'>{user.name}</Link>
+                        <Link to='/profile'>{user.name}</Link>
+                    </span>
+                    <span>
+                        <Link to='/home'>Home</Link>
                     </span>
                 </>
                 :

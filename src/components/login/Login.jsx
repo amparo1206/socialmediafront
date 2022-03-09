@@ -27,7 +27,7 @@ const Login = () => {
             notification.success({ message: "Success", description: message?.message, });
             setTimeout(() => {
                 navigate("/profile")
-            }, 1000);
+            }, 2000);
         }
         dispatch(reset())
     }, [isError, isSuccess, message, navigate, dispatch]);

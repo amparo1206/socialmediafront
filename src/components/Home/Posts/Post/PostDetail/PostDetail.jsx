@@ -22,6 +22,7 @@ const PostDetail = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(addComment(formData))
+        setFormData({comment:""})
     }
     const singleComment = post.comments?.map((comment) => {
         return <h1 key={comment._id}>{comment.comment}</h1>
@@ -35,7 +36,6 @@ const PostDetail = () => {
                 <button type="submit">Comment</button>
             </form>
             {singleComment}
-       
         </div>
     )
 }
