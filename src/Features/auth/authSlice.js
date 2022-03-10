@@ -35,6 +35,10 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      .addCase(getInfo.fulfilled, (state, action) => {
+        console.log('action',action)
+        state.userInfoProfile = action.payload;
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.isSuccess = true;
         state.message = action.payload;
@@ -74,6 +78,14 @@ export const logout = createAsyncThunk('auth/logout', async () => {
     console.error(error)
   }
 });
+
+export const getInfo = createAsyncThunk('auth/info', async () => {
+  try {
+    return await authService.getInfo()
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;

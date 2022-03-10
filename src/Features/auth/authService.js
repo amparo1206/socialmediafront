@@ -10,7 +10,15 @@ const register = async (userData) => {
         console.error(error)
     }
 };
-
+const getInfo = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const res = await axios.get(API_URL + '/users/info', {
+        headers: {
+            authorization: user?.token
+        }
+    })
+    return res.data
+} 
 const login = async (userData) => {
     const res = await axios.post(API_URL + '/users/login', userData)
     if (res.data) {
@@ -35,7 +43,8 @@ const logout = async () => {
 const authService = {
     register,
     login,
-    logout
+    logout,
+    getInfo
 };
 
 export default authService;
