@@ -21,7 +21,6 @@ const Post = () => {
 
 
     const post = posts.map((post) => {
-        console.log(post.likes)
         const isLiked = post.likes?.includes(user?.user._id);
         return (
             <div className="post" key={post._id}>
@@ -30,7 +29,6 @@ const Post = () => {
 
                 </Link>
                 <span className="like">Like :{post.likes?.length}</span>
-                {console.log(isLiked)}
                 {isLiked
                     ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
                     : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
@@ -65,4 +63,4 @@ const Post = () => {
     )
 }
 
-export default Post
+export default Post;

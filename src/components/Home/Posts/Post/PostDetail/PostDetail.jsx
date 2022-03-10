@@ -8,7 +8,7 @@ const PostDetail = () => {
     const { _id } = useParams();
     const dispatch = useDispatch();
     const { post } = useSelector((state) => state.post);
-    const[formData, setFormData] = useState({ comment: " ",_id })
+    const[formData, setFormData] = useState({ comment: " ",postId:_id })
     const { comment } = formData
     useEffect(() => {
         dispatch(getById(_id))
@@ -22,10 +22,10 @@ const PostDetail = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(addComment(formData))
-        setFormData({comment:""})
+        setFormData({comment:"",postId:post._id})
     }
     const singleComment = post.comments?.map((comment) => {
-        return <h1 key={comment._id}>{comment.comment}</h1>
+        return <h2 key={comment._id}>{comment.comment}</h2>
     })
     return (
         <div>

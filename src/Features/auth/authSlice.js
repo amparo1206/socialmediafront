@@ -27,7 +27,7 @@ export const authSlice = createSlice({
         state.user = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload;
         state.isSuccess = true;
         state.message = action.payload;
       })
@@ -36,7 +36,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(getInfo.fulfilled, (state, action) => {
-        console.log('action',action)
         state.userInfoProfile = action.payload;
       })
       .addCase(register.fulfilled, (state, action) => {
