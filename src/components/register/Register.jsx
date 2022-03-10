@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register, reset } from '../../Features/auth/authSlice'
 import { useEffect } from 'react'
 import { notification } from "antd";
+import registerback  from '../../img/register.jpg';
 import "antd/dist/antd.css"
 
 const Register = () => {
@@ -49,10 +50,13 @@ const Register = () => {
     }
     return (
         <div className='register-form'>
+            <div className='image-register'>
+                <img src={registerback} />
+            </div>
             <div className='logo'>
                 <img src={logo} />
             </div>
-            <h2>Register</h2>
+            <h2 className='register-title'>Register</h2>
             <form onSubmit={onSubmit}>
                 <input type="text" name="name" value={name} onChange={onChange} required placeholder='Name' />
                 <input type="email" name="email" value={email} onChange={onChange} required placeholder='Email'/>

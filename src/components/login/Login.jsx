@@ -41,7 +41,7 @@ const Login = () => {
             <div className='logo'>
                 <img src={logo} />
             </div>
-            <h2>Login</h2>
+            <h2 className='login-size'>Login</h2>
             <form onSubmit={onSubmit}>
                 <input type="email" name="email" value={email} onChange={onChange} required placeholder='Email' />
                 <input type="password" name="password" value={password} onChange={onChange} required placeholder='Password' />

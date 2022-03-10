@@ -1,0 +1,64 @@
+@import '../../colors.scss';
+.nav-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999999999;
+    pointer-events: none;
+    .header-out{
+        display: none;
+    }
+    .logo-header{
+        height: 30px;
+        width: auto;
+        padding-left: 52px;
+        margin-top: 12px;
+        margin-bottom: 48px;
+    }
+    .search-header{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        max-width: 350px;
+        appearance: none;
+        width: calc(100% - 20px - 20px);
+        background: $extraextralightgray;
+        border: 0;
+        margin-bottom: 20px;
+        border-radius: 42px;
+        height: 42px;
+        padding: 0 20px;
+        position: absolute;
+        top: 12px;
+        right: 60px;
+        pointer-events: all;
+    }
+    ul{
+        list-style: none;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        li{
+            height: 50px;
+            padding: 0 13px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            border-radius: 100px;
+            img{
+                height: 24px;
+                width: auto;
+                margin-right: 16px;
+            }
+            a{
+                color: $black;
+                font-size: 20px;
+                font-weight: 700;
+                text-decoration: none;
+                pointer-events: all;
+
+            }
+        }
+    }
+}

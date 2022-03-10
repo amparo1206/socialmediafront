@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getById, updatePosts } from "../../../../Features/post/postSlice"
+import './EditPost.scss'
 const EditPost = () => {
     const { _id } = useParams();
     const dispatch = useDispatch();
@@ -31,11 +32,11 @@ const EditPost = () => {
         setFormData({ title: post.title, _id})
       },[post.title]);
     return (
-        <div className='tuitt-form'>
-            <h2>Tuitea</h2>
-            <form onSubmit={onSubmit}>
+        <div className='tuitt-form-edit'>
+            <h2 className="name-form">Tuitea</h2>
+            <form className="form-post" onSubmit={onSubmit}>
                 <textarea maxLength="280" type="text" name="title" value={title} onChange={onChange} placeholder='Tuitt' />
-                <button type="submit">Tuitt</button>
+                <button className="button-post" type="submit">Tuitt</button>
             </form>
         </div>
     )

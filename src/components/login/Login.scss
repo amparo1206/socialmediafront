@@ -1,7 +1,7 @@
 @import '../../colors.scss';
 
 .login-form{
-    max-width: 50%;
+    max-width: 100%;
     height: 100vh;
     float: left;
     width: 100%;
@@ -9,6 +9,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    .login-size{
+        text-align: center;
+    }
 
     .logo{
         img{

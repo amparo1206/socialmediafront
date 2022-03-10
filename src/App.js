@@ -11,8 +11,6 @@ import NotFound from './components/NotFound/NotFound';
 import Search from './components/Search/Search';
 import EditPost from './components/Home/Posts/EditPost/EditPost';
 
-
-
 function App() {
   return (
     <div className="App">
