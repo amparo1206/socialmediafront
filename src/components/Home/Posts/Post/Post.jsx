@@ -22,15 +22,21 @@ const Post = () => {
     }
     const dispatch = useDispatch();
 
+    const onLike = async (_id) => {
+        await dispatch(like(_id))
+        await dispatch(getAll())
+    }
+    const onDisLike = async (_id) => {
+        await dispatch(disLike(_id))
+        await dispatch(getAll())
+    }
 
     const post = posts.map((post) => {
         const isLiked = post.likes?.includes(user?.user._id);
-/*         const username = post.userId.email.split("@")[0]; */
         const createdAt = post.createdAt;
         return (
             <div className="post-map" key={post._id}>
                 <strong>{post.userId.name}</strong>
-{/*                 <span className="username-post">@{username}</span> */}
                 <span className="css-16my406">·</span>
                 <span className="date-post">{moment(createdAt).fromNow()}</span>
                 <Link to={"/post/" + post._id}>
@@ -40,8 +46,8 @@ const Post = () => {
 
                 <span>Like :{post.likes?.length}</span>
                 {isLiked
-                    ? <HeartFilled onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
-                    : <HeartOutlined onClick={isLiked ? () => dispatch(disLike(post._id)) : () => dispatch(like(post._id))} />
+                    ? <HeartFilled onClick={isLiked ? () => onDisLike(post._id) : () => onLike(post._id)} />
+                    : <HeartOutlined onClick={isLiked ? () => onDisLike(post._id) : () => onLike(post._id)} />
                 }
                 {user.user._id === post?.userId?._id
                     ?
@@ -66,6 +72,7 @@ const Post = () => {
         e.preventDefault()
         await dispatch(create(formData))
         await dispatch(getAll(formData))
+        setFormData({title: ''})
     }
     return (
         <div className='tuitt-form'>
