@@ -1,6 +1,6 @@
 ### `Tuitter`
 
-Meet my version of Twitter called Tuitter.ç
+Meet my version of Twitter called Tuitter.
 
 This social network is made with REACT and its styles with SASS.
 
